@@ -1,6 +1,7 @@
 FROM ubuntu
 MAINTAINER SOFe <sofe2038@gmail.com>
 EXPOSE 19132
+EXPOSE 19132/udp
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
 	ca-certificates \
