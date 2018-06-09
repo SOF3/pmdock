@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cp -r /plugins /data/plugins
+[ -z "$(ls -A /plugins)" ] || cp -r /plugins/* /data/plugins
+[ -z "$(ls -A /virions)" ] || cp -r /virions/* /data/virions
 
 if [ ! -d src ]
 then
@@ -8,16 +9,16 @@ then
 	wget -O PocketMine-MP.phar https://jenkins.pmmp.io/job/PocketMine-MP/Alpha/artifact/PocketMine-MP.phar
 fi
 
-if [ ! -f /plugins/DevTools.phar ]
+if [ ! -f /data/plugins/DevTools.phar ]
 then
 	echo Downloading DevTools
 	wget -O /data/plugins/DevTools.phar https://poggit.pmmp.io/get/DevTOols/dev
 fi
 
-if [ ! -z "$(ls -A /virions)" ]
+if [ ! -f /data/plugins/DEVirion.phar ] && [ ! -d /data/plugins/DEVirion ] && [ ! -z "$(ls -A /virions)" ]
 then
 	echo Downloading DEVirion
-	wget -O /plugins/DEVirion.phar https://poggit.pmmp.io/get/DEVirion/dev
+	wget -O /data/plugins/DEVirion.phar https://poggit.pmmp.io/get/DEVirion/dev
 fi
 if [ -d src ]
 then
@@ -26,4 +27,4 @@ else
 	POCKETMINE_FILE=PocketMine-MP.phar
 fi
 
-./bin/php7/bin/php "$POCKETMINE_FILE" --enable-ansi --no-wizard --data /data --plugins /data/plugins --load-virions /virions $@
+./bin/php7/bin/php "$POCKETMINE_FILE" --enable-ansi --no-wizard --data /data --plugins /data/plugins $@

@@ -4,7 +4,7 @@ Docker for PocketMine developers and plugin developers
 ## Directories
 ```
 /pocketmine: the working directory of the server
-  /pocketmine/src: PocketMine source folder. Mount it to a PocketMine source folder in development for PocketMine development.
+  /pocketmine/src: PocketMine source folder. Mount it to a PocketMine source folder in development for PocketMine development. Remember to also mount /pocketmine/vendor.
 /data: the PocketMine data path
   /data/plugins: a copy of the plugins mounted, plus the data folders of the plugins
 /plugins: a read-only volume copied into /data/plugins during startup
