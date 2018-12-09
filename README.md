@@ -1,13 +1,15 @@
 # pmdock
-Docker for PocketMine developers and plugin developers
+Docker for PocketMine developers and plugin developers. Not recommended for production servers.
 
 ## Directories
 ```
-/pocketmine: the working directory of the server
-  /pocketmine/src: PocketMine source folder. Mount it to a PocketMine source folder in development for PocketMine development. Remember to also mount /pocketmine/vendor.
+/pocketmine: the default working directory, also the working directory of PocketMine server
 /data: the PocketMine data path
-  /data/plugins: a copy of the plugins mounted, plus the data folders of the plugins
-/plugins: a read-only volume copied into /data/plugins during startup
-  /plugins/*: you can mount your plugin development folders here
-/virions: contains the virions to be loaded. if not empty, DEVirion will be downloaded into /data/plugins
+  /data/plugin_data: plugin data are mounted here
+/plugins/*: you can mount your plugin development folders here
+/virions/*: you can mount your virion folders here
 ```
+
+## Commands
+- `./start.sh` (`/pocketmine/start.sh`): starts the server (a bit different from the official start.sh)
+  - Option `./start.sh -g=${GIT_REF}`: run from source and checkout `${GIT_REF}`
