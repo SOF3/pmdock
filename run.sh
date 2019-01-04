@@ -29,4 +29,10 @@ fi
 
 CMD="./bin/php7/bin/php $PHP_OPTIONS $POCKETMINE_FILE $PM_OPTIONS $@"
 echo "$CMD"
-echo $CMD | bash
+
+if [ -f /pm-stdin ]
+then
+	CMD="$CMD < /pm-stdin"
+fi
+
+eval $CMD
