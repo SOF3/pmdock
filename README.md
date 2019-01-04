@@ -13,3 +13,4 @@ Docker for PocketMine developers and plugin developers. Not recommended for prod
 ## Commands
 - `./start.sh` (`/pocketmine/start.sh`): starts the server (a bit different from the official start.sh)
   - Option `./start.sh -g=${GIT_REF}`: run from source and checkout `${GIT_REF}`
+  - Other options are passed into PocketMine as-is

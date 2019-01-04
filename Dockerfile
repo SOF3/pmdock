@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	wget \
 	vim \
 	jq \
-	git
+	git \
+	unzip
 
 RUN groupadd pocketmine && useradd -r -d /pocketmine -m -g pocketmine -g sudo pocketmine
 RUN mkdir -p /plugins /virions /data /data/plugins /data/virions
@@ -19,7 +20,7 @@ USER pocketmine
 WORKDIR /pocketmine
 
 # PHP and PocketMine-MP.phar
-RUN echo Installing version 3.4.1
+RUN echo Installing version 3.5.4
 RUN curl -L https://get.pmmp.io | bash -s -
 
 # composer
@@ -31,6 +32,7 @@ RUN rm composer-installer.php
 RUN wget -O /plugins/DevTools.phar https://poggit.pmmp.io/get/DevTools
 RUN wget -O /plugins/DEVirion.phar https://poggit.pmmp.io/get/DEVirion
 
-ADD start.sh start.sh
+RUN rm start.sh
+ADD run.sh run.sh
 
-CMD ./start.sh
+CMD ./run.sh
